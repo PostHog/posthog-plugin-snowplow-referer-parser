@@ -3,12 +3,12 @@ import { PluginEvent } from "@posthog/plugin-scaffold"
 export function processEvent(event: PluginEvent) {
   const props = event.properties
 
-  if (event.event !== "$pageview" || typeof props === "undefined") {
+  if (typeof props === "undefined") {
     return event
   }
 
   console.debug(
-    `(PAGEVIEW) URL: ${props.$current_url}, Referrer: ${props.$referrer}, Referring domain: ${props.$referring_domain}`,
+    `(Event: ${event.event}) URL: ${props.$current_url}, Referrer: ${props.$referrer}, Referring domain: ${props.$referring_domain}`,
   )
 
   // UTM tags
